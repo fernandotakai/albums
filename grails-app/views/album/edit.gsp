@@ -57,7 +57,6 @@
     <li>${t?.encodeAsHTML()}</li>
 </g:each>
 </ul>
-<g:link controller="track" params="['album.id':albumInstance?.id]" action="create">Add Track</g:link>
 
                                 </td>
                             </tr> 
