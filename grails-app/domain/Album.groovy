@@ -6,4 +6,8 @@ class Album {
     String toString() {
         title
     }
+    
+    static constraints = {
+        title matches: /[^_]*/, unique: 'artist'
+    }
 }
