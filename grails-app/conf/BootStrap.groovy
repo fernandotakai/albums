@@ -2,7 +2,8 @@ class BootStrap {
 
     def init = { servletContext ->
         def jeffBeck = new Artist(name: 'Jeff Beck')
-
+        jeffBeck.save()
+        
         def blowByBlow = new Album(title: 'Blow By Blow')
         def wired = new Album(title: 'Wired')
 
