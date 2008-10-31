@@ -11,10 +11,11 @@ class ArtistController {
     }
 
     def show = {
-        def artistInstance = Artist.get( params.id )
+        def artistName = params.artistName.decodeArtistName()
+        def artistInstance = Artist.findByName( artistName )
 
         if(!artistInstance) {
-            flash.message = "Artist not found with id ${params.id}"
+            flash.message = "Artist not found with name ${artistName}"
             redirect(action:list)
         }
         else { return [ artistInstance : artistInstance ] }
@@ -73,7 +74,7 @@ class ArtistController {
         def artistInstance = new Artist(params)
         if(!artistInstance.hasErrors() && artistInstance.save()) {
             flash.message = "Artist ${artistInstance.id} created"
-            redirect(action:show,id:artistInstance.id)
+            redirect(action:show, params:[artistName: artistInstance.name.encodeAsArtistName()])
         }
         else {
             render(view:'create',model:[artistInstance:artistInstance])

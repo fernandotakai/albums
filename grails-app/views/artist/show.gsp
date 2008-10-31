@@ -42,7 +42,10 @@
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
                                 <g:each var="a" in="${artistInstance.albums}">
-                                    <li><g:link controller="album" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+                                    <li><g:link controller="album" 
+	                                            action="show" 
+	                                            params="[artistName: artistInstance.name.encodeAsArtistName(), albumTitle: a.title.encodeAsAlbumTitle()]">
+	${a?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>
                             </td>

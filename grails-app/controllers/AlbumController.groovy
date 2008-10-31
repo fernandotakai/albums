@@ -11,10 +11,18 @@ class AlbumController {
     }
 
     def show = {
-        def albumInstance = Album.get( params.id )
+        def artistName = params.artistName.decodeArtistName()
+        def albumTitle = params.albumTitle.decodeAlbumTitle()
+        
+        def albumInstance = Album.withCriteria(uniqueResult: true) {
+            eq 'title', albumTitle
+            artist {
+                eq 'name', artistName
+            }
+        }
 
         if(!albumInstance) {
-            flash.message = "Album not found with id ${params.id}"
+            flash.message = "Album not for artist ${artistName} with album title ${albumTitle}"
             redirect(action:list)
         }
         else { return [ albumInstance : albumInstance ] }
@@ -73,7 +81,8 @@ class AlbumController {
         def albumInstance = new Album(params)
         if(!albumInstance.hasErrors() && albumInstance.save()) {
             flash.message = "Album ${albumInstance.id} created"
-            redirect(action:show,id:albumInstance.id)
+            redirect(action:show, params:[artistName: albumInstance.artist.name.encodeAsArtistName(), 
+                                          albumTitle: albumInstance.title.encodeAsAlbumTitle()])
         }
         else {
             render(view:'create',model:[albumInstance:albumInstance])

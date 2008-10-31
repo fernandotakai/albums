@@ -32,7 +32,11 @@
                         <tr class="prop">
                             <td valign="top" class="name">Artist:</td>
                             
-                            <td valign="top" class="value"><g:link controller="artist" action="show" id="${albumInstance?.artist?.id}">${albumInstance?.artist?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value">
+	                          <g:link controller="artist" 
+	                                  action="show"
+	                                  params="[artistName: 'Jeff Beck'.encodeAsArtistName()]">
+	${albumInstance?.artist?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     
@@ -49,7 +53,7 @@
                             <td  valign="top" style="text-align:left;" class="value">
                                 <ul>
                                 <g:each var="t" in="${albumInstance.tracks}">
-                                    <li><g:link controller="track" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
+                                    <li>${t?.encodeAsHTML()}</li>
                                 </g:each>
                                 </ul>
                             </td>

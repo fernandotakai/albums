@@ -31,7 +31,10 @@
                     <g:each in="${artistInstanceList}" status="i" var="artistInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td><g:link action="show" id="${artistInstance.id}">${fieldValue(bean:artistInstance, field:'id')}</g:link></td>
+                            <td><g:link action="show" 
+	                                    params="[artistName: artistInstance.name.encodeAsArtistName()]">
+	                                ${fieldValue(bean:artistInstance, field:'id')}
+	                            </g:link></td>
                         
                             <td>${fieldValue(bean:artistInstance, field:'name')}</td>
                         
