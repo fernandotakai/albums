@@ -24,8 +24,9 @@ class ArtistController {
     def delete = {
         def artistInstance = Artist.get( params.id )
         if(artistInstance) {
+            def artistName = artistInstance.name
             artistInstance.delete()
-            flash.message = "Artist ${params.id} deleted"
+            flash.message = "Artist ${artistName} deleted"
             redirect(action:list)
         }
         else {
@@ -52,7 +53,7 @@ class ArtistController {
             artistInstance.properties = params
             if(!artistInstance.hasErrors() && artistInstance.save()) {
                 flash.message = "Artist ${params.id} updated"
-                redirect(action:show,id:artistInstance.id)
+                redirect(action:show, params:[artistName: artistInstance.name.encodeAsArtistName()])
             }
             else {
                 render(view:'edit',model:[artistInstance:artistInstance])
