@@ -6,6 +6,6 @@ class Artist {
         name
     }
     static constraints = {
-        name matches: /[^_]*/
+        name matches: /[^_]*/, unique: true
     }
 }
