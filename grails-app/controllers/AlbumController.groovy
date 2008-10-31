@@ -58,8 +58,9 @@ class AlbumController {
         if(albumInstance) {
             albumInstance.properties = params
             if(!albumInstance.hasErrors() && albumInstance.save()) {
-                flash.message = "Album ${params.id} updated"
-                redirect(action:show,id:albumInstance.id)
+                flash.message = "Album ${albumInstance.title} updated"
+                redirect(action:show, params:[artistName: albumInstance.artist.name.encodeAsArtistName(),
+                                              albumTitle: albumInstance.title.encodeAsAlbumTitle()])
             }
             else {
                 render(view:'edit',model:[albumInstance:albumInstance])
