@@ -28,6 +28,12 @@ class AlbumController {
         else { return [ albumInstance : albumInstance ] }
     }
 
+    def addTrack = {
+        def album = Album.get(params.albumId)
+        album.addToTracks name: params.trackName
+        render template: 'tracks', model:[tracks: album.tracks]
+    }
+    
     def delete = {
         def albumInstance = Album.get( params.id )
         if(albumInstance) {

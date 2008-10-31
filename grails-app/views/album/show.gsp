@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <title>Show Album</title>
+		<g:javascript library="prototype" />
     </head>
     <body>
         <div class="nav">
@@ -51,17 +52,20 @@
                             <td valign="top" class="name">Tracks:</td>
                             
                             <td  valign="top" style="text-align:left;" class="value">
-                                <ul>
-                                <g:each var="t" in="${albumInstance.tracks}">
-                                    <li>${t?.encodeAsHTML()}</li>
-                                </g:each>
-                                </ul>
+	<div id="trackList">
+		<g:render template="tracks" model="[tracks: albumInstance.tracks]"/>
+		</div>
                             </td>
                             
                         </tr>
                     
                     </tbody>
                 </table>
+<h1>Add Track To Album</h1>
+<g:formRemote url="[action: 'addTrack']" update="trackList" name="addTrack">
+	<g:textField name="trackName" value=""/>
+	<g:hiddenField name="albumId" value="${albumInstance.id}"/>
+</g:formRemote>
             </div>
             <div class="buttons">
                 <g:form>
