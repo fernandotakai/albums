@@ -37,6 +37,22 @@
                                 </td>
                             </tr> 
                         
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="albums">Albums:</label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean:artistInstance,field:'albums','errors')}">
+                                    
+<ul>
+<g:each var="a" in="${artistInstance?.albums?}">
+    <li><g:link controller="album" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+</g:each>
+</ul>
+<g:link controller="album" params="['artist.id':artistInstance?.id]" action="create">Add Album</g:link>
+
+                                </td>
+                            </tr> 
+                        
                         </tbody>
                     </table>
                 </div>

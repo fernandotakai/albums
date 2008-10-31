@@ -36,6 +36,19 @@
                             
                         </tr>
                     
+                        <tr class="prop">
+                            <td valign="top" class="name">Albums:</td>
+                            
+                            <td  valign="top" style="text-align:left;" class="value">
+                                <ul>
+                                <g:each var="a" in="${artistInstance.albums}">
+                                    <li><g:link controller="album" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+                                </g:each>
+                                </ul>
+                            </td>
+                            
+                        </tr>
+                    
                     </tbody>
                 </table>
             </div>
