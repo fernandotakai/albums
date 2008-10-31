@@ -54,7 +54,7 @@
                                     
 <ul>
 <g:each var="t" in="${albumInstance?.tracks?}">
-    <li><g:link controller="track" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></li>
+    <li>${t?.encodeAsHTML()}</li>
 </g:each>
 </ul>
 <g:link controller="track" params="['album.id':albumInstance?.id]" action="create">Add Track</g:link>
