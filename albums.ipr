@@ -249,8 +249,5 @@
     <mapping directory="" vcs="" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
-  <UsedPathMacros>
-    <macro name="HOME" />
-  </UsedPathMacros>
 </project>
 
