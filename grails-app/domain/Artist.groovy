@@ -8,4 +8,7 @@ class Artist {
     static constraints = {
         name matches: /[^_]*/, unique: true
     }
+    static mapping = {
+        albums sort: 'title'
+    }
 }
