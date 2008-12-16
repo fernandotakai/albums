@@ -86,6 +86,14 @@ class AlbumController {
 
     def save = {
         def albumInstance = new Album(params)
+        if (params.newArtistName) {
+            // do a check to see if they've entered an existing artist's name as new
+            def artist = Artist.findByName(params.newArtistName) ?: new Artist(name:params.newArtistName)
+            albumInstance.artist = artist
+            if (artist.hasErrors() || !artist.save()) {
+                render(view:'create',model:[albumInstance:albumInstance])
+            }
+        }
         if(!albumInstance.hasErrors() && albumInstance.save()) {
             flash.message = "Album ${albumInstance.id} created"
             redirect(action:show, params:[artistName: albumInstance.artist.name.encodeAsArtistName(), 
