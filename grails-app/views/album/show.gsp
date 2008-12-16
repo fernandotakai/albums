@@ -36,7 +36,7 @@
                             <td valign="top" class="value">
 	                          <g:link controller="artist" 
 	                                  action="show"
-	                                  params="[artistName: 'Jeff Beck'.encodeAsArtistName()]">
+	                                  params="[artistName: albumInstance?.artist?.name.encodeAsArtistName()]">
 	${albumInstance?.artist?.encodeAsHTML()}</g:link></td>
                             
                         </tr>

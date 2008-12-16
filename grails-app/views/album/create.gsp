@@ -2,6 +2,7 @@
 
 <html>
     <head>
+        <gui:resources components='tabView, richEditor' mode='debug'/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="layout" content="main" />
         <title>Create Album</title>         
@@ -30,8 +31,15 @@
                                 <td valign="top" class="name">
                                     <label for="artist">Artist:</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean:albumInstance,field:'artist','errors')}">
-                                    <g:select optionKey="id" from="${Artist.list()}" name="artist.id" value="${albumInstance?.artist?.id}" ></g:select>
+                                <td valign="top" class="yui-skin-sam value ${hasErrors(bean:albumInstance,field:'artist','errors')}">
+                                    <gui:tabView id='artistTabView'>
+                                        <gui:tab label="Existing" active="true">
+                                            <g:select optionKey="id" from="${Artist.list()}" name="artist.id" value="${albumInstance?.artist?.id}" ></g:select>
+                                        </gui:tab>
+                                        <gui:tab label="New">
+                                            <input type="text" id='newArtistName' name='newArtistName' />
+                                        </gui:tab>
+                                    </gui:tabView>
                                 </td>
                             </tr> 
                         
