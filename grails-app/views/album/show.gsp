@@ -62,7 +62,7 @@
                     </tbody>
                 </table>
 <h1>Add Track To Album</h1>
-<g:formRemote url="[action: 'addTrack']" update="trackList" name="addTrack">
+<g:formRemote url="[action: 'addTrack']" update="trackList" name="addTrack" onSuccess="document.getElementById('trackName').value=''">
 	<g:textField name="trackName" value=""/>
 	<g:hiddenField name="albumId" value="${albumInstance.id}"/>
 </g:formRemote>
