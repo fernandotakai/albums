@@ -35,7 +35,10 @@
                             <td valign="top" class="value">${fieldValue(bean:artistInstance, field:'name')}</td>
                             
                         </tr>
-                    
+                        <tr class="prop">
+                            <td valign="top" class="name">Track Count:</td>                            
+                            <td valign="top" class="value">${fieldValue(bean:artistInstance, field:'tracks.size')}</td>                            
+                        </tr>                    
                         <tr class="prop">
                             <td valign="top" class="name">Albums:</td>
                             

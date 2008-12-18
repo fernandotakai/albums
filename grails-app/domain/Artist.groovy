@@ -5,6 +5,13 @@ class Artist {
     String toString() {
         name
     }
+
+	def getTracks() {
+		albums.tracks.flatten()
+	}
+	
+	static transients = ["tracks"]
+	
     static constraints = {
         name matches: /[^_]*/, unique: true
     }
